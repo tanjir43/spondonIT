@@ -96,7 +96,7 @@ return new class extends Migration
             'note_l'    =>  '',
         ],
 
-        #Request new employee
+        #Request new user
         [
             'id'        => 200,
             'parent'    => null,
@@ -108,7 +108,21 @@ return new class extends Migration
             'app_icon'  => '',
             'note'      => '',
             'note_l'    => '',
-        ],      
+        ],
+        
+        #Borrow Book Request
+        [
+            'id'        => 201,
+            'parent'    => null,
+            'name'      => 'Borrow Request ',
+            'name_l'    => 'বই ধার করার অনুরোধ ',
+            'web'       => 'borrow.books',
+            'app'       => '',
+            'web_icon'  => 'uil uil-user',
+            'app_icon'  => '',
+            'note'      => '',
+            'note_l'    => '',
+        ],
     ];
 
     public function up(): void

@@ -38,6 +38,7 @@ return [
     'december'                      =>  'December',
 
     #a
+    'accept_this_request'           =>  'Accept This Request? ',
     'already_maked'                 =>  'Already created ',
     'annual_leave'                  =>  'Annual Leave ',
     'absent_days'                   =>  'Absent Days ',
@@ -76,6 +77,8 @@ return [
     'author'                        =>  'Author ',
 
     #b
+    'borrow_date'                   =>  'Borrow Date ',
+    'borrow'                        =>  'Borrow ',
     'book'                          =>  'Book ',
     'book_condition'                =>  'Book Condition ',
     'block_this_book?'              =>  'Block This Book? ',
@@ -399,6 +402,7 @@ return [
     'qty'                           =>  'Qty ',
     
     #r
+    'reject_this_request'           =>  'Reject This Request? ',
     'regular_price'                 =>  'Regular Price',
     'rejected'                      =>  'Rejected ',
     'requested'                     =>  'Requested ',

@@ -36,6 +36,7 @@ return [
     'december'                      =>  'ডিসেম্বর ',
 
     #a
+    'accept_this_request'           =>  'এই অনুরোধটি গ্রহণ করুন? ',
     'already_maked'                 =>  'ইতিমধ্যে তৈরি করা হয়েছে  ',
     'annual_leave'                  =>  'বার্ষিক ছুটি ',
     'absent_days'                   =>  'অনুপস্থিত দিন ',
@@ -75,6 +76,8 @@ return [
     'author'                        =>  'লেখক ',
 
     #b
+    'borrow_date'                   =>  'ধার তারিখ ',
+    'borrow'                        =>  'বই ধার ',
     'book'                          =>  'বই ',
     'book_condition'                =>  'বইয়ের অবস্থা ',
     'block_this_book?'              =>  'এই বইটি ব্লক করুন ',
@@ -391,6 +394,7 @@ return [
     'qty'                           =>  'পরিমান ',
     
     #r
+    'reject_this_request'           =>  'এই অনুরোধটি প্রত্যাখ্যান করুন ',
     'regular_price'                 =>  'নিয়মিত মূল্য ',
     'rejected'                      =>  'প্রত্যাখ্যাত ',
     'requested'                     =>  'আবেদক ',

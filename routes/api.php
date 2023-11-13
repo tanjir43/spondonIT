@@ -46,4 +46,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified','B
     Route::get('block-books/{id}', 'admin\book\BookController@block')->name('books.block');
     Route::get('unblock-books/{id}', 'admin\book\BookController@unblock')->name('books.unblock');
     
+    #Borrow Books
+    Route::get('borrow-books', 'admin\book\BorrowController@index')->name('borrow.books');
+    Route::get('borrow-books-datatable', 'admin\book\BorrowController@datatable')->name('borrow.datatable');
+    Route::get('borrow-books-accept/{id}', 'admin\book\BorrowController@accept')->name('borrow.accept');
+    Route::get('borrow-books-reject/{id}', 'admin\book\BorrowController@reject')->name('borrow.reject');
 });

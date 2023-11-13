@@ -62,7 +62,6 @@ class BookController extends Controller
             ->filterColumn('name', function ($query, $keyword) {
                 $query->where('name', 'like', '%' . $keyword . '%')
                     ->orWhere('book_code', 'like', '%' . $keyword . '%')
-                    ->orWhere('phone', 'like', '%' . $keyword . '%')
                     ->orWhere('sku', 'like', '%' . $keyword . '%');
             })
             ->editColumn('information', function ($data) {

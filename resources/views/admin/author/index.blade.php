@@ -12,7 +12,7 @@
             <x-card variant="primary" outline="true" title="{!! __('msg.author').' '.__('msg.list') !!}">
                 <x-slot name="body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="employee_table" style="width: 100%">
+                        <table class="table table-bordered" id="author_table" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th style="width: 15%">{{ __('msg.name') }}</th>
@@ -131,7 +131,7 @@
 <script>
     $(function() {
         window.LaravelDataTables=window.LaravelDataTables||{};
-        window.LaravelDataTables["dataTableBuilder"]=$("#employee_table").DataTable({
+        window.LaravelDataTables["dataTableBuilder"]=$("#author_table").DataTable({
             "serverSide":true,
             "processing":true,
             "ajax":{
