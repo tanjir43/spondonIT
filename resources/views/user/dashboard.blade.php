@@ -31,26 +31,22 @@
             </div>
         </aside>
         <!-- Content-->
-        <div class="col-lg-8 col-md-7 mb-5">
-            <h1 class="h2 pb-3 mb-4">Books List</h1>
-       
-        <div class="border rounded-3 p-3 mb-4" id="personal-info">
-            <!-- Name-->
-            <div class="border-bottom pb-3 mb-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="pe-2">
-                    <label class="form-label fw-bold">Full name</label>
-                    <div id="name-value">{{$current_user->name}}</div>
-                    </div>
-                    <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+        <div class="col-lg-8 col-md-7 mb-5 ">
+            <div class="row d-flex">
+                <div class="col-md-7">
+                    <h1 class="h2 pb-3 mb-4">Books List</h1>
                 </div>
-                <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
-                    <input class="form-control mt-3" name="name" type="text" data-bs-binded-element="#name-value" placeholder="{{$current_user->name}}" data-bs-unset-value="Not specified" value="{{old($current_user->name)}}">
+                <div class="col-md-5 ">
+                    <form action="" method="POST" class="d-flex  align-items-end" >
+                        <input type="text" placeholder="Seach by Book or Author name" name="search" class="form-control" style="height: 44px !important">
+                        <button type="submit" class="btn btn-outline-primary" style="padding: .575rem 0.5rem !important"><i class="fi-search"></i></button>
+                    </form>
                 </div>
             </div>
-
-    </div>
-    </div>
+            <div class="border rounded-3 p-3 mb-4" id="book-list">
+                @include('user.render._book_list')
+            </div>
+        </div>
 
 @endsection
 

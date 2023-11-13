@@ -287,7 +287,8 @@ class SaveRepository {
 
         DB::beginTransaction();
         try {
-            Book::create($data);
+            $book = Book::create($data);
+            $book->authors()->sync($request->author);
             DB::commit();
             return 'success';
         } catch (Exception $e) {

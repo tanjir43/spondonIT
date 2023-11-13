@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\AttendanceSheet;
 use App\Models\AttendanceSheetDetail;
+use App\Models\Book;
 use App\Models\Employee;
 use App\Models\User;
 use Exception;
@@ -18,7 +19,7 @@ class UserDashboardController extends Controller
     {
         $user = Auth::user()->id;
         $current_user = User::find($user);
-        return view('user.dashboard',compact('current_user'));
+        $datas = Book::with('media','authors')->withTrashed()->get();
+        return view('user.dashboard',compact('current_user','datas'));
     }
-
 }
