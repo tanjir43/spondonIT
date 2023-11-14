@@ -100,6 +100,12 @@
                                         </a>
                                  
                                     @endif
+                                    <a href="#" class="btn btn-sm btn-success show-history-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#borrowHistoryModal"
+                                        data-borrow-book-id="{{ $data->id }}">
+                                        <strong>...</strong>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -139,6 +145,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="borrowHistoryModal" tabindex="-1" role="dialog" aria-labelledby="borrowHistoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="borrowHistoryModalLabel">Borrow Book History</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Table to display the history -->
+                        <table class="table">
+                            <!-- ... your table headers ... -->
+                            <tbody id="borrowHistoryTableBody">
+                                <!-- Data will be inserted here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
 
 @section('js')
@@ -152,33 +181,7 @@
 <script src="{{asset('home/vendor/filepond/dist/filepond.min.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-{{-- <script>
-    $(document).ready(function () {
-        $('#editQuantityModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var requestId = button.data('id');
-            var previousQuantity = button.data('previous-quantity');
-            $('#quantity').val(previousQuantity);
-        });
 
-        $('#editQuantityForm').submit(function (event) {
-            event.preventDefault();
-
-            var formData = $(this).serialize();
-            $.ajax({
-                url: '{{ route("user.update.borrow.request") }}',
-                type: 'POST',
-                data: formData,
-                success: function (response) {
-                    $('#editQuantityModal').modal('hide');
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        });
-    });
-</script> --}}
 
 <script>
     $(document).ready(function () {
@@ -219,7 +222,72 @@
     });
 </script>
 
+{{-- <script>
+    $(document).ready(function () {
+        // Handle modal show event
+        $('#borrowHistoryModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var hasHistory = button.data('has-history');
 
+            if (hasHistory) {
+                // Fetch and display the history data
+                var borrowBookId = button.data('borrow-book-id');
+                fetchBorrowHistory(borrowBookId);
+            } else {
+                // Display a message or handle accordingly for no history
+                $('#borrowHistoryTableBody').html('<tr><td colspan="3">No history available.</td></tr>');
+            }
+        });
 
- 
+        // Function to fetch and display borrow history
+        function fetchBorrowHistory(borrowBookId) {
+            // Make an AJAX request to fetch history
+            $.ajax({
+                url: '{{ route("user.borrow.history") }}',
+                type: 'GET',
+                data: { 'borrow_book_id': borrowBookId },
+                success: function (response) {
+                    // Populate the table with history data
+                    $('#borrowHistoryTableBody').html(response);
+                },
+                error: function (error) {
+                    // Handle error
+                    console.log(error);
+                }
+            });
+        }
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function () {
+        // Handle modal show event
+        $('#borrowHistoryModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var borrowBookId = button.data('borrow-book-id');
+
+            // Fetch and display the history data
+            fetchBorrowHistory(borrowBookId);
+        });
+
+        // Function to fetch and display borrow history
+        function fetchBorrowHistory(borrowBookId) {
+            // Make an AJAX request to fetch history
+            $.ajax({
+                url: '{{ route("user.borrow.history") }}',
+                type: 'GET',
+                data: { 'borrow_book_id': borrowBookId },
+                success: function (response) {
+                    // Populate the table with history data
+                    $('#borrowHistoryTableBody').html(response);
+                },
+                error: function (error) {
+                    // Handle error
+                    console.log(error);
+                }
+            });
+        }
+    });
+</script>
+
 @endsection

@@ -161,5 +161,14 @@ class UserDashboardController extends Controller
         }
     }
 
+    public function fetchBorrowHistory(Request $request)
+    {
+        $borrowBookId = $request->input('borrow_book_id');
+    
+        $historyData = BorrowBookHistory::where('borrow_book_id', $borrowBookId)->get();
+    
+        return view('user.render._borrow_book_history', ['historyData' => $historyData]);
+    }
+
 
 }
