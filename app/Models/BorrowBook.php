@@ -18,6 +18,7 @@ class BorrowBook extends Model
         'user_id',
         'borrow_date',
         'quantity',
+        'status',
         'created_by',
         'updated_by',
         'deleted_by',

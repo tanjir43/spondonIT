@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('images/spondon-favicon.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('images/spondon-favicon.png')}}">
     <link rel="manifest" href="site.webmanifest">
+
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
@@ -185,6 +186,23 @@
     <script src="{{asset('home/vendor/parallax-js/dist/parallax.min.js')}}"></script>
     <script src="{{asset('home/vendor/nouislider/dist/nouislider.min.css')}}"></script>
     <!-- Main theme script-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    @foreach ($errors->all() as $error)
+        <x-alert type="error" :msg="$error"/>
+    @endforeach
+
+    @if(session('errors_'))
+        @foreach (session('errors_') as $key => $val)
+            <x-alert type="error" :msg="$val"/>
+        @endforeach
+    @endif
+    @if(session('success'))
+        <x-alert type="success" :msg="session('success')"/>
+    @endif
     @yield('js')
     <script src="{{ asset('home/js/theme.min.js') }}"></script>
   </body>

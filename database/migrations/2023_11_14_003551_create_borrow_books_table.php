@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('borrow_date')->nullable();  #If want to  borrow that book  in  future
             $table->integer('quantity')->default(0);
+            $table->tinyInteger('status')->default(0); # 0 = pending, 1 = approved, 2 = rejected
 
             $table->integer('created_by')->references('id')->on('users');
             $table->integer('updated_by')->nullable()->references('id')->on('users');

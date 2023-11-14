@@ -1,14 +1,11 @@
 <div class="row">
-    @foreach ($datas as $data)
+    @forelse ($datas as $data)
     <div class="col-md-4">
-        <div class="card border-0 shadow-sm pb-1 me-lg-1" style="background-color: #ebebeb; position: relative;">
-            <!-- Cart Icon in the Top Left Corner -->
-            <div style="position: absolute; top: 0; left: 0; padding: 8px; font-size: 20px; border: 2px solid rgb(189, 90, 9); border-radius: 25%;" class="text-primary">
+        <div class="card border-0 shadow-sm pb-1 me-lg-1" style="background-color: #ebebeb; position: relative; cursor: pointer;">
+            <div data-book-id="{{ $data->id }}" class="cart-icon" style="position: absolute; top: 0; left: 0; padding: 8px; font-size: 20px; border: 2px solid rgb(189, 90, 9); border-radius: 25%;" class="text-primary">
                 <i class="fi-cart"></i>
-            </div>
+             </div>
             
-    
-            <!-- Image at the top -->
             <img class="" style="object-fit: cover; height: 200px" src="{{ $data->media->attachment }}" alt="Book Image">
     
             <div class="card-body">
@@ -25,6 +22,10 @@
             </div>
         </div>
     </div>
-    
-    @endforeach
+    @empty
+    <div class="col-md-12">
+        <div class="alert alert-danger text-center" role="alert">
+            No Books Found!
+        </div>
+    @endforelse
 </div>

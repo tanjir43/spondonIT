@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin\book;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\BorrowBook;
 use App\Repositories\SaveRepository;
 use App\Repositories\ValidationRepository;
@@ -26,7 +27,7 @@ class BorrowController extends Controller
 
     public function datatable()
     {
-        $info = BorrowBook::withTrashed()->with('createdby', 'updatedby', 'deletedby','user','book')->orderby('id', 'DESC');
+        $info = BorrowBook::with('createdby', 'updatedby', 'deletedby','user','book')->orderby('id', 'DESC');
 
         return DataTables::of($info)
             ->editColumn('book_id', function ($data) {
@@ -65,14 +66,10 @@ class BorrowController extends Controller
                 return $html;
             })
             ->editColumn('deleted_at', function ($data) {
-                if (empty($data->deleted_at)) {
-                    return '<span class="badge bg-success">' . __('msg.running') . '</span>';
-                } else {
-                    $html= '<p class="text-center"><span class="badge bg-danger">'.__('msg.closed').'</span>';
-                    if ($data->deletedby) {
-                        $html.= '<br><span class="badge bg-danger mt-1">'.$data->deletedby->name.'</span></p>';
-                    }
-                    return $html;
+                if (empty($data->status == 1)) {
+                    return '<span class="badge bg-success">' . __('msg.pending') . '</span>';
+                } else if( empty($data->status == 0)) {
+                    return '<span class="badge bg-success">' . __('msg.approved') . '</span>'; 
                 }
             })
             ->editColumn('created_at', function ($data) {
@@ -88,22 +85,49 @@ class BorrowController extends Controller
                 }
                 return $html;
             })
+
+
             ->addColumn('action', function ($data) {
                 $accept = route('borrow.accept', $data->id);
                 $reject = route('borrow.reject', $data->id);
 
                 $html = '<div class="text-center">';
+                    if( $data->status == 0) {
+                        $html .= '<a  href="' . $accept . '">' . '<i class="fas fa-check"></i>' . '</a>';
+                        $html .= '<a onclick="return confirm(\'' . __('msg.reject_this_request?') . ' \')" href="' . $reject . '">' .'<span style="margin-left:10px;"><i class="fas fa-lock  text-danger"></i></span>' . '</a>'  ;
 
-                    if (empty($data->deleted_at)) {
-                        $html .= '<a onclick="return confirm(\'' . __('msg.accept_this_request?') . ' \')" href="' . $accept . '">' .'<span style="margin-left:10px;"><i class="fas fa-lock  text-danger"></i></span>' . '</a>'  ;
                     } else {
-                        $html .= '<a onclick="return confirm(\'' . __('msg.reject_this_request?') . ' \')" href="' . $reject . '">' . '<i class="fas fa-unlock text-success"></i>' . '</a>';
+                        
+                        $html .= '<a onclick="return confirm(\'' . __('msg.reject_this_request?') . ' \')" href="' . $reject . '">' .'<span style="margin-left:10px;"><i class="fas fa-lock  text-danger"></i></span>' . '</a>'  ;
                     }
-               
-                $html .= '</ul></div>';
-                return $html; 
+                 
+                $html .= '</div></div>';
+                return $html;
             })
             ->rawColumns(['book_id','user_id', 'deleted_at', 'created_at', 'information', 'action'])
             ->make(true);
+    }
+
+    public function accept($id)
+    {
+        $info = BorrowBook::find($id);
+        $info->status = 1;
+        $info->save();
+
+        $book_id = $info->book_id;
+        $book = Book::find($book_id);
+        $book->quantity = $book->quantity - $info->quantity;
+        $book->save();
+
+        return redirect()->back()->with('success', __('msg.request_accepted'));
+    }
+
+    public function reject($id)
+    {
+        $info = BorrowBook::find($id);
+        $info->status = 2; #rejected
+        $info->save();
+        $info->delete();
+        return redirect()->back()->with('success', __('msg.request_rejected'));
     }
 }

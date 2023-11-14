@@ -30,7 +30,8 @@ Route::get('/my-profile','website\MyAccountController@index')->name('my.profile'
 
 Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/dashboard','user\UserDashboardController@index')->name('user.dashboard');
-
+    Route::post('book-search','user\UserDashboardController@bookSearch')->name('books.search');
+    Route::post('borrow-request','user\UserDashboardController@borrowRequest')->name('borrow.request');
 });
 Route::get('/app', function () {
     $role = Auth::user()->role;

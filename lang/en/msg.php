@@ -38,6 +38,7 @@ return [
     'december'                      =>  'December',
 
     #a
+    'approved'                      =>  'Approved ',
     'accept_this_request'           =>  'Accept This Request? ',
     'already_maked'                 =>  'Already created ',
     'annual_leave'                  =>  'Annual Leave ',
@@ -402,7 +403,7 @@ return [
     'qty'                           =>  'Qty ',
     
     #r
-    'reject_this_request'           =>  'Reject This Request? ',
+    'reject_this_request?'          =>  'Reject This Request? ',
     'regular_price'                 =>  'Regular Price',
     'rejected'                      =>  'Rejected ',
     'requested'                     =>  'Requested ',

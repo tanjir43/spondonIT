@@ -84,7 +84,7 @@ class RequestedUserController extends Controller
                     if (!$data->is_rejected) {
                         $html .= '<a  href="' . $accept . '">' . '<i class="fas fa-check"></i>' . '</a>';
                  
-                        $html .= '<a onclick="return confirm(\'' . __('msg.block_this_employee?') . ' \')" href="' . $reject . '">' .'<span style="margin-left:10px;"><i class="fas fa-lock  text-danger"></i></span>' . '</a>'  ;
+                        $html .= '<a onclick="return confirm(\'' . __('msg.block_this_user?') . ' \')" href="' . $reject . '">' .'<span style="margin-left:10px;"><i class="fas fa-lock  text-danger"></i></span>' . '</a>'  ;
                     } else {
                         $html .= '<a  href="' . $accept . '">' . '<i class="fas fa-check"></i>' . '</a>';
                     }

@@ -36,6 +36,7 @@ return [
     'december'                      =>  'ডিসেম্বর ',
 
     #a
+    'approved'                      =>  'অনুমোদিত ',
     'accept_this_request'           =>  'এই অনুরোধটি গ্রহণ করুন? ',
     'already_maked'                 =>  'ইতিমধ্যে তৈরি করা হয়েছে  ',
     'annual_leave'                  =>  'বার্ষিক ছুটি ',
@@ -394,7 +395,7 @@ return [
     'qty'                           =>  'পরিমান ',
     
     #r
-    'reject_this_request'           =>  'এই অনুরোধটি প্রত্যাখ্যান করুন ',
+    'reject_this_request?'          =>  'এই অনুরোধটি প্রত্যাখ্যান করুন ',
     'regular_price'                 =>  'নিয়মিত মূল্য ',
     'rejected'                      =>  'প্রত্যাখ্যাত ',
     'requested'                     =>  'আবেদক ',
