@@ -129,7 +129,7 @@
     <main class="page-wrapper">
       <!-- Navbar-->
       <header class="navbar navbar-expand-lg fixed-top" style="background-color:#211E3B " data-scroll-header>
-        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="{{asset('images/spondon-logo.png')}}"  alt="SPONDON IT" style="width: 200px"></a>
+        <div class="container"><a class="navbar-brand me-0 me-xl-4" href="{{route('home')}}"><img class="d-block" src="{{asset('images/spondon-logo.png')}}"  alt="SPONDON IT" style="width: 200px"></a>
           @auth
           <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <a class="btn btn-link btn-dark text-white btn-sm d-none d-lg-block order-lg-3 pe-0 ms-2" href="{{route('user.dashboard')}}">My Profile<i class="fi-arrow-long-right ms-2"></i></a>
@@ -152,7 +152,8 @@
             <div class="row">
               <div class="col-sm-6 mb-6">
                 <h3 class="h6 mb-2 pb-1 fs-base text-white">SPONDON IT</h3>
-                <p class="text-justify" style="color:azure; text-align: justify;text-justify: inter-word;">We specialize in converting your Vision about your website into Reality. Welcome to <span class="text-primary">SPONDON IT</span>, a specialist web design and development agency based in Bangladesh.</p>
+                <p class="text-justify" style="color:azure; text-align: justify;text-justify: inter-word;">We ensure the quality of work in due time.
+                  <br>PROVIDING STATE-OF-THE-ART IT SOLUTIONS TO TAKE YOUR BUSINESS TO THE NEXT LEVEL.</p>
               </div>
             
             </div>
@@ -175,7 +176,7 @@
           </div>
         </div>
         <!-- Copyright-->
-        <p class="fs-sm text-center text-sm-start mb-4"><span class="text-white opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-dark fw-bold" href="https://www.spondonit.com.bd/" target="_blank" rel="noopener">SPONDON IT</a></p>
+        <p class="fs-sm text-center text-sm-start mb-4"><span class="text-white opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-dark fw-bold" href="https://spondonit.com/" target="_blank" rel="noopener">SPONDON IT</a></p>
       </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
