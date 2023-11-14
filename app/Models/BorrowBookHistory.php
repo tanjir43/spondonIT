@@ -6,29 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BorrowBook extends Model
+class BorrowBookHistory extends Model
 {
     use HasFactory;
-    use  SoftDeletes;
+    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'book_id',
+        'borrow_book_id',
         'user_id',
-        'borrow_date',
-        'quantity',
-        'return_date',
-        'is_returned',
-        'status',
+        'prev_quantity',
+        'new_quantity',
         'created_by',
         'updated_by',
         'deleted_by',
     ];
 
-    public function book()
+    public function borrowBook()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(BorrowBook::class);
     }
 
     public function user()
@@ -50,5 +47,6 @@ class BorrowBook extends Model
     {
         return $this->belongsTo(User::class,'deleted_by');
     }
+
 
 }

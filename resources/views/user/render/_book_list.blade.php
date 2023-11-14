@@ -23,9 +23,10 @@
         </div>
     </div>
     @empty
-    <div class="col-md-12">
-        <div class="alert alert-danger text-center" role="alert">
-            No Books Found!
+        <div class="col-md-12">
+            <div class="alert alert-danger text-center" role="alert">
+                No Books Found!
+            </div>
         </div>
     @endforelse
 </div>

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('borrow_books', function (Blueprint $table) {
+        Schema::create('borrow_book_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->date('borrow_date')->nullable();  #If want to  borrow that book  in  future
-            $table->integer('quantity')->default(0);
-            $table->date('return_date')->nullable();
-            $table->tinyInteger('is_returned')->nullable()->default(0); # 0 = not returned, 1 = returned
-            $table->tinyInteger('status')->default(0); # 0 = pending, 1 = approved, 2 = rejected
+            $table->foreignId('borrow_book_id')->constrained('borrow_books');
+            $table->foreignId('user_id')->constrained('users');
+            $table->integer('prev_quantity')->default(0);
+            $table->integer('new_quantity')->default(0);
 
             $table->integer('created_by')->references('id')->on('users');
             $table->integer('updated_by')->nullable()->references('id')->on('users');
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('borrow_books');
+        Schema::dropIfExists('borrow_book_histories');
     }
 };

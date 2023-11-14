@@ -32,6 +32,10 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/dashboard','user\UserDashboardController@index')->name('user.dashboard');
     Route::post('book-search','user\UserDashboardController@bookSearch')->name('books.search');
     Route::post('borrow-request','user\UserDashboardController@borrowRequest')->name('borrow.request');
+    Route::get('borrow-history','user\UserDashboardController@borrowHistory')->name('user.borrow.history');
+    Route::get('return-book/{id}','user\UserDashboardController@returnBook')->name('user.return.book');
+    Route::post('update-borrow-book','user\UserDashboardController@editBorrowRequest')->name('user.update.borrow.request');
+
 });
 Route::get('/app', function () {
     $role = Auth::user()->role;

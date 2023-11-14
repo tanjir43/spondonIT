@@ -24,7 +24,10 @@
             
                 <div class="collapse d-md-block mt-3" id="account-nav">
                     <div class="card-nav">
-                        <a class="card-nav-link active" href="#"><i class="fi-user opacity-60 me-2"></i>Books List</a>
+                        <a class="card-nav-link {{ Route::is(['user.dashboard']) ? 'active' : '' }}" href="{{ route('user.dashboard') }}">
+                            <i class="fi-user opacity-60 me-2"></i>Books List
+                        </a> 
+                        <a class="card-nav-link {{ Route::is(['user.borrow.history']) ? 'active' : '' }} " href="{{ route('user.borrow.history') }}"><i class="fi-user opacity-60 me-2"></i>Borrow History</a>
                         <a class="card-nav-link" href="{{route('logout')}}"><i class="fi-logout opacity-60 me-2"></i>Sign Out</a>
                     </div>
                 </div>
@@ -84,40 +87,13 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
-    // $(document).ready(function () {
-    //     $('.cart-icon').on('click', function () {
-    //         var bookId = $(this).data('book-id');
-    //         $.ajax({
-    //             url: '{{ route('borrow.request') }}',
-    //             method: 'POST',
-    //             data: {
-    //                 _token: '{{ csrf_token() }}',
-    //                 book_id: bookId
-    //             },
-    //             success: function (response) {
-    //                 console.log(response);
-    //             },
-    //             error: function (xhr, status, error) {
-    //                 console.error(xhr.responseText);
-    //             }
-    //         });
-    //     });
-    // });
-
 
     $('.cart-icon').on('click', function () {
-   // Get the book ID
    var bookId = $(this).data('book-id');
-
-   // Show the modal
    $('#quantityModal').modal('show');
-
-   // Set up a click event for the "Add to Cart" button in the modal
    $('#addToCartBtn').on('click', function () {
-      // Get the quantity from the input field
       var quantity = $('#quantityInput').val();
 
-      // Perform your AJAX request here with the bookId and quantity
       $.ajax({
          url: '{{ route('borrow.request') }}',
          method: 'POST',
@@ -137,7 +113,6 @@
          }
       });
 
-      // Hide the modal after the AJAX request is complete
       $('#quantityModal').modal('hide');
    });
 });
