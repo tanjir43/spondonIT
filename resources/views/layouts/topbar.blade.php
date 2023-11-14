@@ -64,7 +64,7 @@
                         </span>Notification 
                     </h5>
                 </div>
-                @foreach ($notifications as $notification )
+                @forelse ($notifications as $notification )
                     <a href="javascript:void(0);" 
                         class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-0 
                         border-start-0 
@@ -90,7 +90,24 @@
                             </div>
                         </div>
                     </a>
-                @endforeach
+                @empty
+                    <a href="javascript:void(0);" 
+                        class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-0 
+                        border-start-0 
+                        border-end-0">
+                        <div class="card-body py-2">
+                            <div class="d-flex align-items-center text-center">
+                                <div class="flex-grow-1 text-truncate ms-2">
+                                    <h5 class="text-danger noti-item-title fw-semibold font-14 m-0">
+                                        No Notification Found
+                                        <small class="fw-normal text-muted ms-1 float-end">
+                                        </small>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforelse
 
                 <!-- All-->
                 <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">

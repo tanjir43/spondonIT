@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin\book;
 
+use App\Events\BorrowRequestStatusChanged;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BorrowBook;
@@ -111,6 +112,7 @@ class BorrowController extends Controller
     public function accept($id)
     {
         $info = BorrowBook::find($id);
+        event(new BorrowRequestStatusChanged($info));
         $info->status = 1;
         $info->save();
 
@@ -119,15 +121,22 @@ class BorrowController extends Controller
         $book->quantity = $book->quantity - $info->quantity;
         $book->save();
 
+
+
         return redirect()->back()->with('success', __('msg.request_accepted'));
     }
 
     public function reject($id)
     {
         $info = BorrowBook::find($id);
+
+        event(new BorrowRequestStatusChanged($info));
+
         $info->status = 2; #rejected
         $info->save();
         $info->delete();
+
+
         return redirect()->back()->with('success', __('msg.request_rejected'));
     }
 }
