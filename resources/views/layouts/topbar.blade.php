@@ -64,67 +64,33 @@
                         </span>Notification 
                     </h5>
                 </div>
-
-                {{-- before loading  Notifications --}}
-                {{-- 
-                    <div class="text-center">
-                        <i class="mdi mdi-dots-circle mdi-spin text-muted h3 mt-0"></i>
-                    </div>
-                    --}}
-                {{--  --}}
-
-                <a href="javascript:void(0);" 
-                    class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-0 
-                    border-start-0 
-                    border-end-0"
-                >
-                    <div class="card-body py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0">
-                                <div class="notify-icon bg-primary">
-                                    <i class="mdi mdi-comment-account-outline"></i>
+                @foreach ($notifications as $notification )
+                    <a href="javascript:void(0);" 
+                        class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-0 
+                        border-start-0 
+                        border-end-0">
+                        <div class="card-body py-2">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="notify-icon bg-primary">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 text-truncate ms-2">
+                                    <h5 class="noti-item-title fw-semibold font-14 m-0">
+                                        {{ $notification->msg }}
+                                        <small class="fw-normal text-muted ms-1 float-end">                                        {{ $notification->created_at->diffForHumans() }}
+                                        </small>
+                                    </h5>
+                                    <small class="noti-item-subtitle text-muted">
+                                        Created By  {{ $notification->user->name }}. 
+                                       <strong> {{ $notification->msg }} </strong>
+                                    </small>
                                 </div>
                             </div>
-                            <div class="flex-grow-1 text-truncate ms-2">
-                                <h5 class="noti-item-title fw-semibold font-14 m-0">
-                                    Order No. #999999999999
-                                    {{-- {title} --}}
-                                    <small class="fw-normal text-muted ms-1 float-end">1 min ago</small>
-                                </h5>
-                                <small class="noti-item-subtitle text-muted">
-                                    Updated by masud. 
-                                    {Description}
-                                </small>
-                            </div>
                         </div>
-                    </div>
-                </a>
-                <a href="javascript:void(0);" 
-                    class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-0 
-                    border-start-0 
-                    border-end-0"
-                >
-                    <div class="card-body py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0">
-                                <div class="notify-icon bg-primary">
-                                    <i class="mdi mdi-comment-account-outline"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 text-truncate ms-2">
-                                <h5 class="noti-item-title fw-semibold font-14 m-0">
-                                    Order No. #999999999999
-                                    {{-- {title} --}}
-                                    <small class="fw-normal text-muted ms-1 float-end">1 min ago</small>
-                                </h5>
-                                <small class="noti-item-subtitle text-muted">
-                                    Updated by masud. 
-                                    {Description}
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                @endforeach
 
                 <!-- All-->
                 <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">

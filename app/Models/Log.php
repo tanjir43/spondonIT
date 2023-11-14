@@ -13,9 +13,8 @@ class Log extends Model
     protected $fillable = [
         'user_id',
         'role_id',
-        'branch_id',
         'msg',
-        'is_seen'
+        'is_seen',
     ];
 
     public function user()

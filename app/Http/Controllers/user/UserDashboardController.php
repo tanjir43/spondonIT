@@ -5,7 +5,9 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BorrowBook;
+use App\Models\Log;
 use App\Models\User;
+use App\Notifications\BorrowRequestNotification;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +64,20 @@ class UserDashboardController extends Controller
         DB::beginTransaction();
         try {
             BorrowBook::create($data);
+
+            Log::create([
+                'user_id'       => $user,
+                'role_id'       => 3, #user
+                'msg'           => 'New Borrow Request',
+                'created_by'    => $user,
+            ]);
             DB::commit();
+            
+            
+            return response()->json([
+                'success' => 'Borrow request has been sent'
+            ]);
+
             return response()->json([
                 'success' => 'Borrow request has been sent'
             ]);
